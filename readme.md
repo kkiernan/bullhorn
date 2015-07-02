@@ -1,4 +1,4 @@
-# Bullhorn PHP Client
+# Bullhorn
 
 This is a basic PHP wrapper around the Bullhorn SOAP API. A REST API is offered by Bullhorn, but I currently only have the means to access and test the SOAP API. Support for the REST API can be added if there is any interest.
 
