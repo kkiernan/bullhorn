@@ -14,12 +14,17 @@ $bullhorn = new Bullhorn(
     $config['API_KEY']
 );
 
-// Basic findMultiple exapmle.
-$jobs = $bullhorn->findMultiple('JobOrder', [100, 101]);
+// Test that findMultiple can handle a single ID.
+$job = $bullhorn->findMultiple('JobOrder', [15616165165161]);
 
-print_r($jobs);
+print_r($job);
 
 exit;
+
+
+
+// Basic findMultiple exapmle.
+$jobs = $bullhorn->findMultiple('JobOrder', [100, 101]);
 
 // Get job IDs that match a search.
 $ids = $bullhorn->query(
@@ -41,11 +46,9 @@ foreach ($jobOrders as $jobOrder) {
 
 // Find a candidate by their ID.
 $candidate = $bullhorn->find('Candidate', 98261);
-print_r($candidate);
 
 // Find a candidate education record by its ID.
 $candidateEducation = $bullhorn->find('CandidateEducation', 360);
-print_r($candidateEducation);
 
 // Get a candidate ID by email.
 $candidateId = $bullhorn->query(
@@ -60,4 +63,3 @@ $candidateId = $bullhorn->query(
 
 // Get details for the retrieved candidate ID.
 $candidate = $bullhorn->find('Candidate', $candidateId);
-print_r($candidate);

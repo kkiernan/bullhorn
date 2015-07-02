@@ -73,6 +73,14 @@ class Bullhorn
         return $entity->return->dto;
     }
 
+    /**
+     * Perform a findMultiple operation.
+     * 
+     * @param string $entityName The name of the entity to retrieve.
+     * @param array  $ids        The IDs of the entities to retreive.
+     * 
+     * @return array
+     */
     public function findMultiple($entityName, array $ids)
     {
         // Placeholder arrays for our results.
@@ -84,7 +92,7 @@ class Bullhorn
             return $this->soapInt($id);
         }, $ids);
 
-        // The API only supports 20 IDs at a time.
+        // The API only supports 20 IDs per request.
         $chunks = array_chunk($ids, 20);
 
         // Send a request for each group of 20 IDs.
@@ -98,10 +106,18 @@ class Bullhorn
             $results[] = $this->client->findMultiple($request);
         }
 
-        // Convert the results to a simple nested array.
+        // Keep only the dtos array in each result group.
         $results = array_map(function($chunk) {
             return $chunk->return->dtos;
         }, $results);
+
+        // If there are no entities, return an empty array. Without this, the
+        // array_map called above results in this method returning an array
+        // with a single empty element. Not a huge deal, but, I don't
+        // know, I don't like that.
+        if (empty(array_filter($results))) {
+            return [];
+        }
 
         // Flatten the nested array.
         array_walk_recursive($results, function(&$item, $key) use (&$flattenedResults) {
