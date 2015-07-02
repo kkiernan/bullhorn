@@ -27,7 +27,7 @@ $candidateId = $bullhorn->query(
     [
         'entityName' => 'Candidate',
         'maxResults' => 1,
-        'where' => 'isDeleted = 0 AND email = \'kkiernan@orbissolutions.com\'',
+        'where' => 'isDeleted = 0 AND email = \'john@example.com\'',
         'distinct' => 0,
         'parameters' => []
     ]
