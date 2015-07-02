@@ -88,9 +88,11 @@ class Bullhorn
         $flattenedResults = [];
 
         // Convert each ID to a SoapVar object.
-        $ids = array_map(function($id) {
-            return $this->soapInt($id);
-        }, $ids);
+        $ids = array_map(
+            function ($id) {
+                return $this->soapInt($id);
+            }, $ids
+        );
 
         // The API only supports 20 IDs per request.
         $chunks = array_chunk($ids, 20);
@@ -107,9 +109,11 @@ class Bullhorn
         }
 
         // Keep only the dtos array in each result group.
-        $results = array_map(function($chunk) {
-            return $chunk->return->dtos;
-        }, $results);
+        $results = array_map(
+            function ($chunk) {
+                return $chunk->return->dtos;
+            }, $results
+        );
 
         // If there are no entities, return an empty array. Without this, the
         // array_map called above results in this method returning an array
@@ -120,9 +124,11 @@ class Bullhorn
         }
 
         // Flatten the nested array.
-        array_walk_recursive($results, function(&$item, $key) use (&$flattenedResults) {
-            $flattenedResults[] = $item;
-        });
+        array_walk_recursive(
+            $results, function (&$item, $key) use (&$flattenedResults) {
+                $flattenedResults[] = $item;
+            }
+        );
 
         return $flattenedResults;
     }
