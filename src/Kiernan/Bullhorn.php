@@ -45,13 +45,19 @@ class Bullhorn
     /**
      * Perform a find operation.
      * 
-     * @param string   $entityName The name of the entity.
-     * @param \SoapVar $id         The id for which to search.
+     * @param string        $entityName The name of the entity.
+     * @param integer|array $id         The id or ids for which to search.
      * 
      * @return \stdClass
      */
     public function find($entityName, $id)
     {
+        // Without checking, you don't know if you get one id or an array of ids
+        // from a query. This quick check makes the public api a bit cleaner.
+        if (is_array($id)) {
+            return $this->findMultiple($entityName, $id);
+        }
+
         $request = [
             'session' => $this->session->session,
             'entityName' => $entityName,
@@ -65,6 +71,44 @@ class Bullhorn
         }
 
         return $entity->return->dto;
+    }
+
+    public function findMultiple($entityName, array $ids)
+    {
+        // Placeholder arrays for our results.
+        $results = [];
+        $flattenedResults = [];
+
+        // Convert each ID to a SoapVar object.
+        $ids = array_map(function($id) {
+            return $this->soapInt($id);
+        }, $ids);
+
+        // The API only supports 20 IDs at a time.
+        $chunks = array_chunk($ids, 20);
+
+        // Send a request for each group of 20 IDs.
+        foreach ($chunks as $ids) {
+            $request = [
+                'session' => $this->session->session,
+                'entityName' => $entityName,
+                'ids' => $ids
+            ];
+
+            $results[] = $this->client->findMultiple($request);
+        }
+
+        // Convert the results to a simple nested array.
+        $results = array_map(function($chunk) {
+            return $chunk->return->dtos;
+        }, $results);
+
+        // Flatten the nested array.
+        array_walk_recursive($results, function(&$item, $key) use (&$flattenedResults) {
+            $flattenedResults[] = $item;
+        });
+
+        return $flattenedResults;
     }
 
     /**

@@ -32,16 +32,30 @@ $bullhorn = new Bullhorn(
 
 ## Supported Operations
 
+- [Find](#find)
+- [Find Multiple](#find-multiple)
+- [Query](#query)
+
 ### Find
-The find method retrieves a single entity with the ID you specify. See the [Bullhorn documentation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-find.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____14) for detailed information.
+The `find` method retrieves a single entity with the ID you specify. See the [Bullhorn documentation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-find.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____14) for detailed information.
 
 ```
 // Find a candidate by their ID.
 $candidate = $bullhorn->find('Candidate', 98261);
 ```
 
+**Tip:** The `find` method first checks to see if the id you are passing in is an array. If an array is detected, `find` will pass the request on to the `findMultiple` method for you. This is helpful when passing the id(s) in from a query result and you aren't sure if one or many results were returned.
+
+### Find Multiple
+The `findMultiple` method retrieves an array of entities matching the IDs you specify. See the [Bullhorn documenation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-findMultiple.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____15) for detailed information.
+
+```
+// Find multiple jobs.
+$jobs = $bullhorn->findMultiple('JobOrder', [100, 101]);
+```
+
 ### Query
-The query method retrieves IDs of entities that match a query you specify. See the [Bullhorn documentation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-query.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____45) for detailed information.
+The `query` method retrieves IDs of entities that match a query you specify. After retrieving the IDs, you can pass them to the `find` or `findMultiple` methods to get the entity details. See the [Bullhorn documentation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-query.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____45) for detailed information.
 
 ```
 // Get a candidate ID by email.
@@ -54,4 +68,7 @@ $candidateId = $bullhorn->query(
         'parameters' => []
     ]
 );
+
+// Now you can get the details for the candidate.
+$candidate = $bullhorn->find('Candidate', $candidateId);
 ```

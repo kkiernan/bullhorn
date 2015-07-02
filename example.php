@@ -14,6 +14,31 @@ $bullhorn = new Bullhorn(
     $config['API_KEY']
 );
 
+// Basic findMultiple exapmle.
+$jobs = $bullhorn->findMultiple('JobOrder', [100, 101]);
+
+print_r($jobs);
+
+exit;
+
+// Get job IDs that match a search.
+$ids = $bullhorn->query(
+    [
+        'entityName' => 'JobOrder',
+        'where' => "title LIKE '%manager%' AND isDeleted = 0 AND isOpen = 1 AND isPublic = 1 AND status = 'Accepting Candidates'",
+        'distinct' => 0,
+        'parameters' => []
+    ]
+);
+
+// Get details for each job that matches our search.
+$jobOrders = $bullhorn->find('JobOrder', $ids);
+
+// Print the job titles to the screen.
+foreach ($jobOrders as $jobOrder) {
+    printf("%s \n", $jobOrder->title);
+}
+
 // Find a candidate by their ID.
 $candidate = $bullhorn->find('Candidate', 98261);
 print_r($candidate);
