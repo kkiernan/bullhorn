@@ -38,7 +38,6 @@ The find method retrieves a single entity with the ID you specify. See the [Bull
 ```
 // Find a candidate by their ID.
 $candidate = $bullhorn->find('Candidate', 98261);
-print_r($candidate);
 ```
 
 ### Query
