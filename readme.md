@@ -73,6 +73,10 @@ $candidateId = $bullhorn->query(
 $candidate = $bullhorn->find('Candidate', $candidateId);
 ```
 
+## Available Entities
+
+There are a ton of entities to work with in Bullhorn. Some examples are [Appointment](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-Appointment.htm%3FTocPath%3DReference%7CEntities%7C_____1), [Candidate](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-Candidate.htm%3FTocPath%3DReference%7CEntities%7C_____4), [Note](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-Note.htm%3FTocPath%3DReference%7CEntities%7C_____34), and [JobSubmission](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-JobSubmission.htm%3FTocPath%3DReference%7CEntities%7C_____33). Sea a [full list of the available entities](http://developer.bullhorn.com/doc/version_2-0/index.htm).
+
 ## Coding Style
 
 I use phpcs and phpcbf to clean up the files and conform as closely as possible to PSR-2.
