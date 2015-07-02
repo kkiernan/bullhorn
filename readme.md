@@ -72,3 +72,7 @@ $candidateId = $bullhorn->query(
 // Now you can get the details for the candidate.
 $candidate = $bullhorn->find('Candidate', $candidateId);
 ```
+
+## Coding Style
+
+I use phpcs and phpcbf to clean up the files and conform as closely as possible to PSR-2.
