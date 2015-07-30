@@ -10,7 +10,7 @@ trait CreatesSoapVars
      * A basic wrapper around PHP's SoapVar function that creates a SoapVar object
      * with the SOAP_ENC_OBJECT encoding, int and namespaces pre-set.
      * 
-     * @param integer $int The integer to pass into the SoapVar object.
+     * @param int $int The integer to pass into the SoapVar object.
      * 
      * @return SoapVar
      */

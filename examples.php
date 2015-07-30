@@ -23,9 +23,9 @@ $jobs = $bullhorn->findMultiple('JobOrder', [100, 101]);
 $ids = $bullhorn->query(
     [
         'entityName' => 'JobOrder',
-        'where' => "title LIKE '%manager%' AND isDeleted = 0 AND isOpen = 1 AND isPublic = 1 AND status = 'Accepting Candidates'",
-        'distinct' => 0,
-        'parameters' => []
+        'where'      => "title LIKE '%manager%' AND isDeleted = 0 AND isOpen = 1 AND isPublic = 1 AND status = 'Accepting Candidates'",
+        'distinct'   => 0,
+        'parameters' => [],
     ]
 );
 
@@ -54,9 +54,9 @@ $candidateId = $bullhorn->query(
     [
         'entityName' => 'Candidate',
         'maxResults' => 1,
-        'where' => 'isDeleted = 0 AND email = \'john@example.com\'',
-        'distinct' => 0,
-        'parameters' => []
+        'where'      => 'isDeleted = 0 AND email = \'john@example.com\'',
+        'distinct'   => 0,
+        'parameters' => [],
     ]
 );
 

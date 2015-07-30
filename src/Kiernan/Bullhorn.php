@@ -45,8 +45,8 @@ class Bullhorn
     /**
      * Perform a find operation.
      * 
-     * @param string        $entityName The name of the entity.
-     * @param integer|array $id         The id or ids for which to search.
+     * @param string    $entityName The name of the entity.
+     * @param int|array $id         The id or ids for which to search.
      * 
      * @return \stdClass
      */
@@ -59,15 +59,15 @@ class Bullhorn
         }
 
         $request = [
-            'session' => $this->session->session,
+            'session'    => $this->session->session,
             'entityName' => $entityName,
-            'id' => $this->soapInt($id)
+            'id'         => $this->soapInt($id),
         ];
 
         $entity = $this->client->find($request);
 
-        if (! isset($entity->return->dto)) {
-            return new stdClass;
+        if (!isset($entity->return->dto)) {
+            return new stdClass();
         }
 
         return $entity->return->dto;
@@ -100,9 +100,9 @@ class Bullhorn
         // Send a request for each group of 20 IDs.
         foreach ($chunks as $ids) {
             $request = [
-                'session' => $this->session->session,
+                'session'    => $this->session->session,
                 'entityName' => $entityName,
-                'ids' => $ids
+                'ids'        => $ids,
             ];
 
             $results[] = $this->client->findMultiple($request);
@@ -145,11 +145,11 @@ class Bullhorn
         $request = $this->soapObject(
             [
                 'session' => $this->session->session,
-                'query' => $this->soapObject(
+                'query'   => $this->soapObject(
                     $data,
                     'dtoQuery',
                     'http://query.apiservice.bullhorn.com/'
-                )
+                ),
             ],
             'query',
             'http://query.apiservice.bullhorn.com/'
@@ -157,7 +157,7 @@ class Bullhorn
 
         $ids = $this->client->query($request);
 
-        if (! $ids->return->ids) {
+        if (!$ids->return->ids) {
             return [];
         }
 
