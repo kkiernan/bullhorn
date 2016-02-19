@@ -38,25 +38,28 @@ $bullhorn = new Bullhorn(
 - [addFile](#add-file)
 
 ### Find
-The `find` method retrieves a single entity with the ID you specify. See the [Bullhorn documentation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-find.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____14) for detailed information.
+
+The `find` method retrieves a single entity with the id you specify.
 
 ```
-// Find a candidate by their ID.
+// Find a candidate entity by id
 $candidate = $bullhorn->find('Candidate', 98261);
 ```
 
-**Tip:** The `find` method first checks to see if the id you are passing in is an array. If an array is detected, `find` will pass the request on to the `findMultiple` method for you. This is helpful when passing the id(s) in from a query result and you aren't sure if one or many results were returned.
+**Tip**: The `find` method first checks to see if the id you are passing in is an array. If an array is detected, `find` will pass the request on to the `findMultiple` method for you. This is helpful when passing the id(s) in from a query result and you aren't sure if one or many results were returned.
 
 ### Find Multiple
-The `findMultiple` method retrieves an array of entities matching the IDs you specify. See the [Bullhorn documenation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-findMultiple.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____15) for detailed information.
+
+The `findMultiple` method retrieves an array of entities matching the ids you specify.
 
 ```
-// Find multiple jobs.
+// Find multiple job orders
 $jobs = $bullhorn->findMultiple('JobOrder', [100, 101]);
 ```
 
 ### Query
-The `query` method retrieves IDs of entities that match a query you specify. After retrieving the IDs, you can pass them to the `find` or `findMultiple` methods to get the entity details. See the [Bullhorn documentation](http://developer.bullhorn.com/doc/version_2-0/#Operations/operation-query.htm%3FTocPath%3DReference%7CCore%20Operations%7C_____45) for detailed information.
+
+The `query` method retrieves ids of entities that match a query you specify. After retrieving the ids, you can pass them to the `find` or `findMultiple` methods to get the entity details.
 
 ```
 // Get a candidate id for a specific query
@@ -68,13 +71,15 @@ $id = $bullhorn->query([
     'parameters' => []
 ]);
 
-// Get the details for the candidate id that was returned
+// Get details for the candidate id
 $candidate = $bullhorn->find('Candidate', $id);
 ```
 
 ## Add File
 
-The `addFile` method links a file with a Bullhorn entity. Note that the file must be on the filesystem already. If the user is uploading a file from an HTML form, you must upload that file to your server first. This method does not upload the file for you, it only sends the file to Bullhorn and links it with the entity you specify.
+The `addFile` method links a file with a Bullhorn entity.
+
+**Note**: The file must be on the filesystem already. For exapmle, if the user is uploading a file from an HTML form, you must upload that file to your server. You can then pass that filename along to the `addFile` method.
 
 ```
 $entityId = 294415;
@@ -83,13 +88,9 @@ $filename = 'test-resume.pdf';
 $type = 'File';
 $comments = 'Test API Upload!';
 
-$result = $bullhorn->addFile($entityId, $entityName, $filename, $type, $comments);
+$bullhorn->addFile($entityId, $entityName, $filename, $type, $comments);
 ```
 
 ## Available Entities
 
-There are a ton of entities to work with in Bullhorn. Some examples are [Appointment](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-Appointment.htm%3FTocPath%3DReference%7CEntities%7C_____1), [Candidate](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-Candidate.htm%3FTocPath%3DReference%7CEntities%7C_____4), [Note](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-Note.htm%3FTocPath%3DReference%7CEntities%7C_____34), and [JobSubmission](http://developer.bullhorn.com/doc/version_2-0/index.htm#Entities/Entity-JobSubmission.htm%3FTocPath%3DReference%7CEntities%7C_____33). Sea a [full list of the available entities](http://developer.bullhorn.com/doc/version_2-0/index.htm).
-
-## Coding Style
-
-I use phpcs and phpcbf to clean up the files and conform as closely as possible to PSR-2.
+There are a ton of entities to work with in Bullhorn. Some examples are Appointment, Candidate, Note and JobSubmission. See a [full list of the available entities](http://developer.bullhorn.com/documentation) in the documentation.
