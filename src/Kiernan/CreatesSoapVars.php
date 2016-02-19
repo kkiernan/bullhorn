@@ -1,6 +1,6 @@
 <?php
 
-namespace Kiernan\Traits;
+namespace Kiernan;
 
 use SoapVar;
 
@@ -10,7 +10,7 @@ trait CreatesSoapVars
      * A basic wrapper around PHP's SoapVar function that creates a SoapVar object
      * with the SOAP_ENC_OBJECT encoding, int and namespaces pre-set.
      * 
-     * @param int $int The integer to pass into the SoapVar object.
+     * @param int $int
      * 
      * @return SoapVar
      */
@@ -28,9 +28,9 @@ trait CreatesSoapVars
      * A basic wrapper around PHP's SoapVar function that creates a SoapVar object
      * with the SOAP_ENC_OBJECT encoding set.
      * 
-     * @param array  $data      The data to pass into the SoapVar object.
-     * @param string $type      The type.
-     * @param string $namespace The type namespace.
+     * @param array $data
+     * @param string $type
+     * @param string $namespace
      * 
      * @return SoapVar
      */

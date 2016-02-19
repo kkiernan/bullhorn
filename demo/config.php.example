@@ -1,0 +1,16 @@
+<?php
+
+return [
+
+    'bullhorn' => [
+        'wsdl'   => 'https://api.bullhornstaffing.com/webservices-2.5/?wsdl',
+        'params' => [
+            'soap_version' => SOAP_1_1,
+            'trace'        => 1,
+        ],
+        'username' => 'secret!',
+        'password' => 'secret!',
+        'apiKey'   => 'secret!',
+    ]
+
+];

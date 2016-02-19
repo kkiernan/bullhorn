@@ -7,7 +7,7 @@ use stdClass;
 
 class Bullhorn
 {
-    use \Kiernan\Traits\CreatesSoapVars;
+    use CreatesSoapVars;
 
     /**
      * @var SoapClient
@@ -24,11 +24,11 @@ class Bullhorn
     /**
      * Create a new soap session instance.
      * 
-     * @param string $wsdl     The Bullhorn WSDL URI you would like to use.
-     * @param array  $params   An array of options.
-     * @param string $username Username for the Bullhorn API.
-     * @param string $password Password for the Bullhorn API.
-     * @param string $apiKey   API key for the Bullhorn API.
+     * @param string $wsdl
+     * @param array $params
+     * @param string $username
+     * @param string $password
+     * @param string $apiKey
      */
     public function __construct($wsdl, array $params, $username, $password, $apiKey)
     {
@@ -45,10 +45,10 @@ class Bullhorn
     /**
      * Perform a find operation.
      * 
-     * @param string    $entityName The name of the entity.
-     * @param int|array $id         The id or ids for which to search.
+     * @param string $entityName
+     * @param int|array $id
      * 
-     * @return \stdClass
+     * @return stdClass
      */
     public function find($entityName, $id)
     {
@@ -76,8 +76,8 @@ class Bullhorn
     /**
      * Perform a findMultiple operation.
      * 
-     * @param string $entityName The name of the entity to retrieve.
-     * @param array  $ids        The IDs of the entities to retreive.
+     * @param string $entityName
+     * @param array $ids
      * 
      * @return array
      */
@@ -136,7 +136,7 @@ class Bullhorn
     /**
      * Send a query request to the api.
      *
-     * @param array $data The query to run.
+     * @param array $data
      * 
      * @return array
      */
@@ -162,5 +162,45 @@ class Bullhorn
         }
 
         return $ids->return->ids;
+    }
+
+    /**
+     * Creates a link between an instance of an entity and a file.
+     *
+     * @param int $entityId
+     * @param string $entityName
+     * @param string $filename
+     * @param string $type
+     * @param string $comments
+     */
+    public function addFile($entityId, $entityName, $filename, $type, $comments = '')
+    {
+        $entityId = $this->soapInt($entityId);
+
+        $mimeType = mime_content_type($filename);
+
+        $mimeTypeParts = explode('/', $mimeType);
+
+        $fileMetaData = [
+            'comments'       => $comments,
+            'contentSubType' => $mimeTypeParts[1],
+            'contentType'    => $mimeTypeParts[0],
+            'name'           => $filename,
+            'type'           => $type,
+        ];
+
+        $fileHandle = fopen($filename, 'r');
+        $fileContent = fread($fileHandle, filesize($filename));
+        fclose($fileHandle);
+
+        $request = [
+            'session'      => $this->session->session,
+            'entityName'   => $entityName,
+            'entityId'     => $entityId,
+            'fileMetaData' => $fileMetaData,
+            'fileContent'  => $fileContent,
+        ];
+
+        return $this->client->addFile($request);
     }
 }
