@@ -28,7 +28,7 @@ trait CreatesSoapVars
      * A basic wrapper around PHP's SoapVar function that creates a SoapVar object
      * with the SOAP_ENC_OBJECT encoding set.
      * 
-     * @param array $data
+     * @param array  $data
      * @param string $type
      * @param string $namespace
      * 
