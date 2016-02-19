@@ -1,4 +1,7 @@
 {
+    "name": "kkiernan/bullhorn",
+    "description": "PHP client for Bullhorn",
+    "keywords": ["bullhorn"],
     "autoload": {
         "psr-4": {
             "Kiernan\\": "src/Kiernan"
