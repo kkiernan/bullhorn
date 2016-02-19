@@ -79,7 +79,7 @@ $candidate = $bullhorn->find('Candidate', $id);
 
 The `addFile` method links a file with a Bullhorn entity.
 
-**Note**: The file must be on the filesystem already. For exapmle, if the user is uploading a file from an HTML form, you must upload that file to your server. You can then pass that filename along to the `addFile` method.
+**Note**: The file must be on the filesystem already. For example, if the user is uploading a file from an HTML form, you must upload that file to your server. You can then pass that filename along to the `addFile` method.
 
 ```
 $entityId = 294415;
