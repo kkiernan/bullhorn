@@ -25,7 +25,7 @@ class Bullhorn
      * Create a new soap session instance.
      * 
      * @param string $wsdl
-     * @param array $params
+     * @param array  $params
      * @param string $username
      * @param string $password
      * @param string $apiKey
@@ -45,7 +45,7 @@ class Bullhorn
     /**
      * Perform a find operation.
      * 
-     * @param string $entityName
+     * @param string    $entityName
      * @param int|array $id
      * 
      * @return stdClass
@@ -77,7 +77,7 @@ class Bullhorn
      * Perform a findMultiple operation.
      * 
      * @param string $entityName
-     * @param array $ids
+     * @param array  $ids
      * 
      * @return array
      */
@@ -167,7 +167,7 @@ class Bullhorn
     /**
      * Creates a link between an instance of an entity and a file.
      *
-     * @param int $entityId
+     * @param int    $entityId
      * @param string $entityName
      * @param string $filename
      * @param string $type
