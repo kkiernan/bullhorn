@@ -4,20 +4,16 @@ use Kiernan\Bullhorn;
 
 class BullhornTest extends PHPUnit_Framework_TestCase
 {
-    protected $config;
-
     protected $bullhorn;
 
     protected function setup()
     {
-        $this->config = require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
-
         $this->bullhorn = new Bullhorn(
-            $this->config['bullhorn']['wsdl'],
-            $this->config['bullhorn']['params'],
-            $this->config['bullhorn']['username'],
-            $this->config['bullhorn']['password'],
-            $this->config['bullhorn']['apiKey']
+            'https://api.bullhornstaffing.com/webservices-2.5/?wsdl',
+            ['soap_version' => SOAP_1_1, 'trace' => 1],
+            getenv('username'),
+            getenv('password'),
+            getenv('apiKey')
         );
     }
 
