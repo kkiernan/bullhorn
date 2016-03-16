@@ -11,9 +11,9 @@ class BullhornTest extends PHPUnit_Framework_TestCase
         $this->bullhorn = new Bullhorn(
             'https://api.bullhornstaffing.com/webservices-2.5/?wsdl',
             ['soap_version' => SOAP_1_1, 'trace' => 1],
-            getenv('username'),
-            getenv('password'),
-            getenv('apiKey')
+            getenv('BULLHORN_USERNAME'),
+            getenv('BULLHORN_PASSWORD'),
+            getenv('BULLHORN_API_KEY')
         );
     }
 

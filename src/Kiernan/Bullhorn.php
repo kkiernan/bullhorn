@@ -103,15 +103,15 @@ class Bullhorn
         }
 
         // Keep only the dtos array in each result group.
-        $results = array_map(function ($chunk) {
+        $results = array_filter(array_map(function ($chunk) {
             return $chunk->return->dtos;
-        }, $results);
+        }, $results));
 
         // If there are no entities, return an empty array. Without this, the
         // array_map called above results in this method returning an array
         // with a single empty element. Not a huge deal, but, I don't
         // know, I don't like that.
-        if (empty(array_filter($results))) {
+        if (empty($results)) {
             return [];
         }
 
