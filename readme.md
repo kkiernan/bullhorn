@@ -1,5 +1,8 @@
 # Bullhorn
 
+[![Build Status](https://travis-ci.org/kkiernan/bullhorn.svg)](https://travis-ci.org/kkiernan/bullhorn)
+[![Style Status](https://styleci.io/repos/38395751/shield)](https://styleci.io/repos/38395751/shield)
+
 This is a basic PHP wrapper around the Bullhorn SOAP API. A REST API is offered by Bullhorn, but I currently only have the means to access and test the SOAP API.
 
 ## Authenticating
