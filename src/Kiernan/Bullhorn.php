@@ -16,14 +16,14 @@ class Bullhorn
 
     /**
      * The session object contains the key, corporation id, and user id.
-     * 
+     *
      * @var stdClass
      */
     protected $session;
 
     /**
      * Create a new soap session instance.
-     * 
+     *
      * @param string $wsdl
      * @param array  $params
      * @param string $username
@@ -44,10 +44,10 @@ class Bullhorn
 
     /**
      * Perform a find operation.
-     * 
+     *
      * @param string    $entityName
      * @param int|array $id
-     * 
+     *
      * @return stdClass
      */
     public function find($entityName, $id)
@@ -71,10 +71,10 @@ class Bullhorn
 
     /**
      * Perform a findMultiple operation.
-     * 
+     *
      * @param string $entityName
      * @param array  $ids
-     * 
+     *
      * @return array
      */
     public function findMultiple($entityName, array $ids)
@@ -127,7 +127,7 @@ class Bullhorn
      * Send a query request to the api.
      *
      * @param array $data
-     * 
+     *
      * @return array
      */
     public function query(array $data)

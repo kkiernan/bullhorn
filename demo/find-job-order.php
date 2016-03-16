@@ -38,7 +38,7 @@ $bullhorn = new Bullhorn(
 | Bullhorn API. Check the appropriate documentation for the
 | API version you are using.
 |
-| http://developer.bullhorn.com/documentation 
+| http://developer.bullhorn.com/documentation
 |
 */
 
