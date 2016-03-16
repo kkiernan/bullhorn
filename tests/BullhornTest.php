@@ -38,7 +38,7 @@ class BullhornTest extends PHPUnit_Framework_TestCase
         $data = [
             'foo' => 'MyFoo',
             'bar' => [],
-            'baz' => 1234
+            'baz' => 1234,
         ];
 
         $type = 'someType';
