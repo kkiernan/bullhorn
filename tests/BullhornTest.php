@@ -10,7 +10,7 @@ class BullhornTest extends PHPUnit_Framework_TestCase
 
     protected function setup()
     {
-        $this->config = require 'config.php';
+        $this->config = require $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
         $this->bullhorn = new Bullhorn(
             $this->config['bullhorn']['wsdl'],
@@ -71,7 +71,7 @@ class BullhornTest extends PHPUnit_Framework_TestCase
     public function testCanFindMultipleCandidates()
     {
         // $this->markTestSkipped('Replace the candidate id and assertion values with a known candidate to run this test.');
-        
+
         $candidates = $this->bullhorn->findMultiple('Candidate', [294415, 294415]);
 
         $this->assertInstanceOf('stdClass', $candidates[0]);
